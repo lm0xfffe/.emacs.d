@@ -46,9 +46,8 @@
      :url "https://github.com/quelpa/quelpa-use-package.git")))
 (require 'quelpa-use-package)
 
-;(setq quelpa-upgrade-interval 7
-;      quelpa-update-melpa-p nil)
-(setq quelpa-update-melpa-p nil)
+(setq quelpa-upgrade-interval 365
+      quelpa-update-melpa-p nil)
 
 (use-package gnu-elpa-keyring-update)
 (use-package diminish)
