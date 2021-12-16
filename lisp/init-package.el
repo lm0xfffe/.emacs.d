@@ -115,23 +115,27 @@
             :fetcher github
             :repo "manateelazycat/lazycat-theme"))
 
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (dashboard-modify-heading-icons '((recents . "file-text")
-                                    (bookmarks . "book")))
-  (message "%s" "start dash board")
-  ;; 设置标题
-  (setq dashboard-banner-logo-title
-        "欢迎您使用此Emacs配置文件，有任何问题可加QQ群:                  ")
-  ;; 设置banner
-  ;(setq dashboard-startup-banner "~/.emacs.d/var/banner/evan-emacs-banner.png")
-  (setq dashboard-center-content t)
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-navigator t)
-  (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer))))
+;(use-package dashboard
+;  :ensure t
+;  :init
+;  (message "%s" "Init dash board")
+;  :config
+;  (dashboard-setup-startup-hook)
+;  (dashboard-modify-heading-icons '((recents . "file-text")
+;                                    (bookmarks . "book")))
+;  (message "%s" "start dash board")
+;  ;; 设置标题
+;  (setq dashboard-banner-logo-title
+;        "欢迎您使用此Emacs配置文件，有任何问题可加QQ群:                  ")
+;  ;; 设置banner
+;  (setq dashboard-startup-banner "~/.emacs.d/var/banner/evan-emacs-banner.png")
+;  (setq dashboard-center-content t)
+;  (setq dashboard-show-shortcuts nil)
+;  (setq dashboard-set-heading-icons t)
+;  (setq dashboard-set-navigator t)
+;  (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer))))
+
+
 
 (progn
   (use-package all-the-icons
@@ -195,6 +199,35 @@
   :hook ((org-mode markdown-mode) . valign-mode)
   :config
   (setq valign-fancy-bar nil))
+
+
+(use-package dashboard
+  :ensure t
+  :init
+  (dashboard-setup-startup-hook)
+  :config
+  (dashboard-modify-heading-icons '((recents . "file-text")
+                                    (bookmarks . "book")))
+  (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer)))
+                                    )
+;  ;; 设置标题
+  (setq dashboard-banner-logo-title
+        "Oh the begining ...")
+;  ;; 设置banner
+  (setq dashboard-startup-banner 'logo) ;"~/.emacs.d/var/banner/evan-emacs-banner.png")
+  (setq dashboard-center-content t)
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)
+                        ))
+  
+
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 (provide 'init-package)
 

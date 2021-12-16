@@ -22,7 +22,7 @@
       frame-title-format "%b"
       help-window-select t
       inhibit-startup-screen t	   ; disable the startup screen splash
-      inhibit-default-init t
+      ;inhibit-default-init t
       ;; initial-scratch-message nil
       inhibit-compacting-font-caches t
       make-backup-files nil             ; disable backup file
