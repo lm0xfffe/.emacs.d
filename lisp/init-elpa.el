@@ -39,7 +39,8 @@
   (with-temp-buffer
     (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
     (eval-buffer)
-    (quelpa-self-upgrade))
+    (quelpa-self-upgrade)
+    )
   (quelpa
    '(quelpa-use-package
      :fetcher git

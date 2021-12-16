@@ -24,26 +24,26 @@
 ;  :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
 ;  :init (add-hook 'after-init-hook 'global-company-mode))
 ;; 著名的Emacs补全框架
-(use-package company 
+(use-package company
   :hook ((prog-mode sly-mrepl-mode) . company-mode)
   :init (setq company-tooltip-align-annotations t company-idle-delay 0.1 company-echo-delay 0
               company-minimum-prefix-length 2 company-require-match nil company-dabbrev-ignore-case
-              nil company-dabbrev-downcase nil company-show-numbers t) 
-  :config 
+              nil company-dabbrev-downcase nil company-show-numbers t)
+  :config
   :bind (:map company-active-map
-              ("M-n" . nil) 
-              ("M-p" . nil) 
-              ("C-n" . #'company-select-next) 
+              ("M-n" . nil)
+              ("M-p" . nil)
+              ("C-n" . #'company-select-next)
               ("C-p" . #'company-select-previous)
               (:map leader-key
-        ("c s" . #'company-yasnippet))) 
-  ) 
+        ("c s" . #'company-yasnippet)))
+  )
 
-;; Settings for exec-path-from-shell
-(use-package exec-path-from-shell
-  :defer nil
-  :if (memq window-system '(mac ns x))
-  :init (exec-path-from-shell-initialize))
+;; Settings for exec-path-from-shell 耗时太多
+;(use-package exec-path-from-shell
+;  :defer nil
+;  :if (memq window-system '(mac ns x))
+;  :init (exec-path-from-shell-initialize))
 
 ;; Settings for projectile (use builtin project in Emacs 28)
 (use-package projectile
@@ -65,7 +65,7 @@
   :init (which-key-mode))
 
 ;; Settings for yasnippet
-(use-package yasnippet 
+(use-package yasnippet
   :ensure t
   :defer 2
   :config
@@ -121,6 +121,7 @@
   (dashboard-setup-startup-hook)
   (dashboard-modify-heading-icons '((recents . "file-text")
                                     (bookmarks . "book")))
+  (message "%s" "start dash board")
   ;; 设置标题
   (setq dashboard-banner-logo-title
         "欢迎您使用此Emacs配置文件，有任何问题可加QQ群:                  ")
@@ -131,6 +132,7 @@
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-navigator t)
   (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer))))
+
 (progn
   (use-package all-the-icons
 	:ensure t)

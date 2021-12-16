@@ -210,9 +210,6 @@
   (with-eval-after-load 'projectile
     (setq projectile-completion-system 'ivy)))
 
-(use-package exec-path-from-shell
-	     :ensure t)
-
 ;; 强大的字符跳转工具
 (use-package avy
   :defer 0

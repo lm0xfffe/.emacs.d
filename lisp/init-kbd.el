@@ -82,12 +82,17 @@
   "M-SPC w N" "交换窗口-下"
   "M-SPC w F" "交换窗口-右"
   "M-SPC w B" "交换窗口-左")
+
 (bind-key "t T" #'+evan/toggle-transparency leader-key)
 (bind-key "t p" #'+evan/toggle-proxy leader-key)
 (global-set-key (kbd "M-SPC") 'leader-key)
 (global-set-key (kbd "C-(") 'backward-sexp) 
 (global-set-key (kbd "C-)") 'forward-sexp)
 (global-set-key (kbd "<f12>") 'open-init-dired)
+
+(global-set-key (kbd "C-x C-=") 'font-size-increase)
+(global-set-key (kbd "C-x C-\-") 'font-size-decrease)
+(global-set-key (kbd "C-x C-0") 'font-size-orginal)
 
 (provide 'init-kbd)
 

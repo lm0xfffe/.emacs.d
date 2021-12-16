@@ -26,21 +26,42 @@
       (if (member font (font-family-list))
 	  (throw 'font font)))))
 
+(setq
+ ;; 英文字体
+ en-font-name "Cascadia Code" ;Sarasa Mono SC"
+ en-font-style "ExtraLight" ;Regular"
+ en-font-size 17
+ ;; 中文字体
+ zh-font-name "Yuanti SC" ;Kaiti SC" ;Sarasa Mono SC"
+ zh-font-style "Regular"
+ zh-font-size 15)
+
 ;;;###autoload
 (defun cabins/setup-font ()
   "Font setup."
 
   (interactive)
   (let* ((efl '("Cascadia Code" "Source Code Pro" "JetBrains Mono" "Courier New" "Monaco" "Ubuntu Mono"))
-	 (cfl '("楷体" "黑体" "STHeiti" "STKaiti"))
+	 (cfl '("Yuanti SC" "黑体" "STHeiti" "STKaiti"))
 	 (cf (available-font cfl))
 	 (ef (available-font efl)))
     (when ef
       (dolist (face '(default fixed-pitch fixed-pitch-serif variable-pitch))
-	(set-face-attribute face nil :family ef)))
+	;(set-face-attribute face nil :family ef)
+  (set-face-attribute 'default nil
+						  :font (font-spec
+								 :name en-font-name
+								 :style en-font-style
+								 :size en-font-size))
+  ))
     (when cf
       (dolist (charset '(kana han cjk-misc bopomofo))
-	(set-fontset-font t charset cf))
+	;(set-fontset-font t charset cf)
+  (set-fontset-font t 'han (font-spec
+                                :name zh-font-name
+                                :style zh-font-style
+                                :size zh-font-size))
+  )
       (setq face-font-rescale-alist
 	    (mapcar (lambda (item) (cons item 1.2)) cfl)))))
 
@@ -52,6 +73,43 @@
 		  (cabins/setup-font))))
   (add-hook 'after-init-hook #'cabins/setup-font))
 
+
+(defun font-size-adjust (step)
+  "修改全局字体大小"
+  (interactive "n步长:")
+  (unless step
+    (setq step 1))
+  (let ((en-size en-font-size)
+        (zh-size zh-font-size))
+    (setq en-size (+ en-size step)
+          zh-size (+ zh-size step)
+          en-font-size en-size
+          zh-font-size zh-size)
+    (progn
+	  (set-face-attribute 'default nil
+						  :font (font-spec
+								 :name en-font-name
+								 :style en-font-style
+								 :size en-font-size))
+      (set-fontset-font t 'han (font-spec
+                                :name zh-font-name
+                                :style zh-font-style
+                                :size zh-font-size)))))
+(defun font-size-increase ()
+  "增加字体大小"
+  (interactive)
+  (font-size-adjust 1))
+(defun font-size-decrease ()
+  "减少字体大小"
+  (interactive)
+  (font-size-adjust -1))
+
+(defun font-size-orginal ()
+  "复原字体大小"
+  (interactive)
+  (setq evan/en-font-size original-en-font-size
+        evan/zh-font-size original-zh-font-size)
+  (font-size-adjust 0))
 (provide 'init-ui)
 
 ;;; init-ui.el ends here

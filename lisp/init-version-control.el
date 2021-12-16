@@ -1,7 +1,7 @@
 ;; 交互式Git工具
 (use-package magit
   :ensure t
-  :defer 2
+  :defer 5
   :init
   (use-package with-editor
     :ensure t

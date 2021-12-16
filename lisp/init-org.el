@@ -74,6 +74,12 @@
    '((python . t)
 	 (shell . t))))
 
+; 这些模式取消高亮行
+(add-hook 'org-mode-hook (lambda ()
+(global-hl-line-mode 0)))
+(add-hook 'org-agenda-mode-hook (lambda ()
+(global-hl-line-mode 0)))
+
 ;(use-package org-capture
 ;  :after org
 ;  :config
@@ -179,6 +185,21 @@
 ;; (setq org-superstar-headline-bullets-list
 ;;       '("◉" ("◈" ?◈) "○" "▷"))
 
+
+(use-package org-download
+  :config
+  (setq org-download-image-dir         (concat org-directory "/img/")
+        org-download-method            'directory
+        org-download-edit-cmd          "nomacs.exe %s"
+        org-download-screenshot-method "magick convert clipboard: %s")
+  (org-download-enable))
+
+(use-package org-pomodoro
+  :config
+  (setq org-pomodoro-format " %s"
+        org-pomodoro-short-break-format "☕%s"
+        org-pomodoro-long-break-format  " %s"))
+        
 (use-package gkroam
   :disabled
   :ensure t

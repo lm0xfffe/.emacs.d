@@ -33,9 +33,10 @@
 (require 'init-elpa)
 (require 'init-package)
 (require 'init-builtin)
-(require 'init-kbd)
+
 (require 'init-ide)
 (require 'init-ui)
+(require 'init-kbd)
 (require 'init-tools)
 (require 'init-lsp)
 (require 'init-org)
