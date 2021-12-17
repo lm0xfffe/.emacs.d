@@ -208,12 +208,10 @@
   :config
   (dashboard-modify-heading-icons '((recents . "file-text")
                                     (bookmarks . "book")))
-  (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer)))
-                                    )
-;  ;; 设置标题
+  ;;; 设置标题
   (setq dashboard-banner-logo-title
         "Oh the begining ...")
-;  ;; 设置banner
+  ;;; 设置banner
   (setq dashboard-startup-banner 'logo) ;"~/.emacs.d/var/banner/evan-emacs-banner.png")
   (setq dashboard-center-content t)
   (setq dashboard-show-shortcuts nil)
@@ -225,6 +223,16 @@
                         (projects . 5)
                         (agenda . 5)
                         ))
+  (add-hook 'after-init-hook (lambda () (dashboard-refresh-buffer)))
+                                    )
+  
+  ;; Format: "(icon title help action face prefix suffix)"
+
+  ;(setq dashboard-footer-messages '("Dashboard is pretty cool!"))
+(setq dashboard-footer-icon (all-the-icons-octicon "dashboard"
+                                                   :height 1.1
+                                                   :v-adjust -0.05
+                                                   :face 'font-lock-keyword-face))
   
 
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
